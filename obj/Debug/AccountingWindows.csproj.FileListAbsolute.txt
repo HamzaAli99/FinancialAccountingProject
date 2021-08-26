@@ -1,0 +1,10 @@
+C:\Users\meham\source\repos\AccountingWindows\bin\Debug\AccountingWindows.exe.config
+C:\Users\meham\source\repos\AccountingWindows\bin\Debug\AccountingWindows.exe
+C:\Users\meham\source\repos\AccountingWindows\bin\Debug\AccountingWindows.pdb
+C:\Users\meham\source\repos\AccountingWindows\obj\Debug\AccountingWindows.csproj.AssemblyReference.cache
+C:\Users\meham\source\repos\AccountingWindows\obj\Debug\AccountingWindows.Form1.resources
+C:\Users\meham\source\repos\AccountingWindows\obj\Debug\AccountingWindows.Properties.Resources.resources
+C:\Users\meham\source\repos\AccountingWindows\obj\Debug\AccountingWindows.csproj.GenerateResource.cache
+C:\Users\meham\source\repos\AccountingWindows\obj\Debug\AccountingWindows.csproj.CoreCompileInputs.cache
+C:\Users\meham\source\repos\AccountingWindows\obj\Debug\AccountingWindows.exe
+C:\Users\meham\source\repos\AccountingWindows\obj\Debug\AccountingWindows.pdb
