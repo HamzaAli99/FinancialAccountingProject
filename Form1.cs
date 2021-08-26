@@ -108,39 +108,103 @@ namespace AccountingWindows
             decimal dSum = GetListSum(GJ_debit);
             decimal cSum = GetListSum(GJ_credit);
 
-            MessageBox.Show("DebitSum = " + dSum.ToString() + "  CreditSum = " + cSum.ToString());
+            if (dSum != cSum)
+            {
+                MessageBox.Show("Debit and Credit couldn't be balanced. Please check if you are missing some entries.");
+                return;
+            }
 
-           //string commandText = "INSERT INTO GJ (T_id, Date, Debit_account, Debit_type, Debit_amount, Credit_account,Credit_type,Credit_amount) VALUES (@T_id, @Date, @Debit_account, @Debit_type, @Debit_amount, @Credit_account,@Credit_type,@Credit_amount); ";
-           // SqlConnection sqlconn = new SqlConnection(@"Data Source=.;Initial Catalog=accounting;Integrated Security=True");
-          
-           // foreach(Control control in this.myList)
-           // {
-           //     if(control is TextBox)
-           //     {
-           //         Console.WriteLine(control);
-           //         Console.WriteLine();
-           //     }
-           // }
+            //SqlConnection sqlconn = new SqlConnection(@"Data Source=.;Initial Catalog=accounting;Integrated Security=True");
+
+            string commandText = "INSERT INTO GJ (T_id, Date, Debit_account, Debit_type, Debit_amount, Credit_account,Credit_type,Credit_amount) VALUES (@T_id, @Date, @Debit_account, @Debit_type, @Debit_amount, @Credit_account,@Credit_type,@Credit_amount); ";
+            //SqlCommand cmd = new SqlCommand(commandText, sqlconn);
+            //sqlconn.Open();
+           // cmd.Parameters.AddWithValue("@T_id", 1);
+            // cmd.Parameters.AddWithValue("@Date", dateTimePicker1.Value);
+           // int i = cmd.ExecuteNonQuery();
+
+            //string DebitEntryQuery = "INSERT INTO GJ (Debit_account, Debit_type, Debit_amount) VALUES ( @Debit_account, @Debit_type, @Debit_amount); ";
+            //SqlCommand a = new SqlCommand(DebitEntryQuery, sqlconn);
+
+            //string CreditEntryQuery = "INSERT INTO GJ (Credit_account,Credit_type,Credit_amount) VALUES (@Credit_account,@Credit_type,@Credit_amount); ";
+            //SqlCommand b = new SqlCommand(CreditEntryQuery, sqlconn);
+           
+           
+           // sqlconn.Close();
+
+
+            foreach (entry d_entry in GJ_debit)
+            {
+                using(SqlConnection sqlconn = new SqlConnection(@"Data Source=.;Initial Catalog=accounting;Integrated Security=True"))
+                {
+                    SqlCommand cmd1 = new SqlCommand(commandText, sqlconn);
+                    cmd1.Parameters.AddWithValue("@T_id", 1);
+                    cmd1.Parameters.AddWithValue("@Date", dateTimePicker1.Value);
+
+                    cmd1.Parameters.AddWithValue("@Debit_account", d_entry.acc_title);
+                    cmd1.Parameters.AddWithValue("@Debit_type", d_entry.acc_head);
+                    cmd1.Parameters.AddWithValue("@Debit_amount", d_entry.amount);
+
+                    cmd1.Parameters.AddWithValue("@Credit_account", "");
+                    cmd1.Parameters.AddWithValue("@Credit_type", "");
+                    cmd1.Parameters.AddWithValue("@Credit_amount", 0);
+                    sqlconn.Open();
+                    int execute = cmd1.ExecuteNonQuery();
+                }
+            }
+            //string commandText1 = "INSERT INTO GJ (T_id, Date, Debit_account, Debit_type, Debit_amount, Credit_account,Credit_type,Credit_amount) VALUES (@T_id, @Date, @Debit_account, @Debit_type, @Debit_amount, @Credit_account,@Credit_type,@Credit_amount); ";
+            //SqlCommand cmd1 = new SqlCommand(commandText1, sqlconn);
+
+            foreach (entry c_entry in GJ_credit)
+            {
+                using (SqlConnection sqlconn = new SqlConnection(@"Data Source=.;Initial Catalog=accounting;Integrated Security=True"))
+                {
+                    SqlCommand cmd1 = new SqlCommand(commandText, sqlconn);
+
+                    cmd1.Parameters.AddWithValue("@T_id", 1);
+                    cmd1.Parameters.AddWithValue("@Date", dateTimePicker1.Value);
+                    cmd1.Parameters.AddWithValue("@Debit_account", "");
+                    cmd1.Parameters.AddWithValue("@Debit_type", "");
+                    cmd1.Parameters.AddWithValue("@Debit_amount", 0);
+
+                    cmd1.Parameters.AddWithValue("@Credit_account", c_entry.acc_title);
+                    cmd1.Parameters.AddWithValue("@Credit_type", c_entry.acc_head);
+                    cmd1.Parameters.AddWithValue("@Credit_amount", c_entry.amount);
+                    sqlconn.Open();
+                    int execute = cmd1.ExecuteNonQuery();
+                }
+            }
+
+            GJ_credit.Clear();
+            GJ_debit.Clear();
+            txt_OngoingEntry.ResetText();
+            // foreach(Control control in this.myList)
+            // {
+            //     if(control is TextBox)
+            //     {
+            //         Console.WriteLine(control);
+            //         Console.WriteLine();
+            //     }
+            // }
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.CommandType = CommandType.StoredProcedure;
 
             // int id = 1;
-            ////SqlCommand cmd = new SqlCommand(sqlconn);
-            // SqlCommand cmd = new SqlCommand(commandText, sqlconn);
-            // //cmd.CommandType = CommandType.StoredProcedure;
-            // //cmd.CommandType = CommandType.StoredProcedure;
-            // cmd.Parameters.AddWithValue("@T_id", 1);
-            // cmd.Parameters.AddWithValue("@Date", dateTimePicker1.Value);
-            // cmd.Parameters.AddWithValue("@Debit_account", textBox1.Text);
-            // cmd.Parameters.AddWithValue("@Debit_type", Typebox.SelectedItem); //name changed to DebitAcc...
-            // cmd.Parameters.AddWithValue("@Debit_amount", Debitvalue.Value);
-            // cmd.Parameters.AddWithValue("@Credit_account",textBox2.Text);
-            // cmd.Parameters.AddWithValue("@Credit_type", comboBox1.SelectedItem);  //name changed to creditAcc...
-            // cmd.Parameters.AddWithValue("@Credit_amount", creditvalue.Value);
+            // SqlCommand cmd = new SqlCommand(sqlconn);
 
-            // sqlconn.Open();
 
-            // int i = cmd.ExecuteNonQuery();
 
-            // sqlconn.Close();
+            //cmd.Parameters.AddWithValue("@T_id", 1);
+            //cmd.Parameters.AddWithValue("@Date", dateTimePicker1.Value);
+            //cmd.Parameters.AddWithValue("@Credit_account", textBox2.Text);
+            //cmd.Parameters.AddWithValue("@Credit_type", comboBox1.SelectedItem);  //name changed to creditAcc...
+            //cmd.Parameters.AddWithValue("@Credit_amount", creditvalue.Value);
+
+            //sqlconn.Open();
+
+            //int i = cmd.ExecuteNonQuery();
+
+            //sqlconn.Close();
 
             // if (i != 0)
             // {
@@ -239,6 +303,22 @@ namespace AccountingWindows
         private void txt_OngoingEntry_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_Clear_Click(object sender, EventArgs e)
+        {
+            DebitAccHead.ResetText();
+            CreditAccHead.ResetText();
+            textBox1.ResetText();
+            textBox2.ResetText();
+            Debitvalue.Value = 0;
+            creditvalue.Value = 0;
+
+
+            txt_OngoingEntry.ResetText();
+
+            GJ_credit.Clear();
+            GJ_debit.Clear();
         }
     }
 }

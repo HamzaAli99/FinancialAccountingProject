@@ -46,6 +46,7 @@ namespace AccountingWindows
             this.DebitAccHead = new System.Windows.Forms.ComboBox();
             this.CreditAccHead = new System.Windows.Forms.ComboBox();
             this.txt_OngoingEntry = new System.Windows.Forms.RichTextBox();
+            this.btn_Clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Debitvalue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.creditvalue)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +66,7 @@ namespace AccountingWindows
             this.dateTimePicker1.Location = new System.Drawing.Point(94, 69);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(235, 22);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker1.TabIndex = 111;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // DebitAccount
@@ -101,7 +102,7 @@ namespace AccountingWindows
             this.Debit_acc_head.Location = new System.Drawing.Point(690, 10);
             this.Debit_acc_head.Name = "Debit_acc_head";
             this.Debit_acc_head.Size = new System.Drawing.Size(117, 24);
-            this.Debit_acc_head.TabIndex = 4;
+            this.Debit_acc_head.TabIndex = 444;
             this.Debit_acc_head.SelectedIndexChanged += new System.EventHandler(this.Typebox_SelectedIndexChanged);
             // 
             // comboBox1
@@ -117,7 +118,7 @@ namespace AccountingWindows
             this.comboBox1.Location = new System.Drawing.Point(690, 67);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(125, 24);
-            this.comboBox1.TabIndex = 5;
+            this.comboBox1.TabIndex = 55;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // DebitAmount
@@ -149,7 +150,7 @@ namespace AccountingWindows
             0});
             this.Debitvalue.Name = "Debitvalue";
             this.Debitvalue.Size = new System.Drawing.Size(120, 22);
-            this.Debitvalue.TabIndex = 10;
+            this.Debitvalue.TabIndex = 2;
             this.Debitvalue.ThousandsSeparator = true;
             this.Debitvalue.ValueChanged += new System.EventHandler(this.Debitvalue_ValueChanged);
             // 
@@ -163,7 +164,7 @@ namespace AccountingWindows
             0});
             this.creditvalue.Name = "creditvalue";
             this.creditvalue.Size = new System.Drawing.Size(120, 22);
-            this.creditvalue.TabIndex = 11;
+            this.creditvalue.TabIndex = 5;
             this.creditvalue.ThousandsSeparator = true;
             this.creditvalue.ValueChanged += new System.EventHandler(this.creditvalue_ValueChanged);
             // 
@@ -172,7 +173,7 @@ namespace AccountingWindows
             this.Entry.Location = new System.Drawing.Point(658, 428);
             this.Entry.Name = "Entry";
             this.Entry.Size = new System.Drawing.Size(118, 56);
-            this.Entry.TabIndex = 12;
+            this.Entry.TabIndex = 8;
             this.Entry.Text = "Entry";
             this.Entry.UseVisualStyleBackColor = true;
             this.Entry.Click += new System.EventHandler(this.Entry_Click);
@@ -182,7 +183,7 @@ namespace AccountingWindows
             this.textBox1.Location = new System.Drawing.Point(41, 203);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 13;
+            this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
@@ -190,16 +191,16 @@ namespace AccountingWindows
             this.textBox2.Location = new System.Drawing.Point(267, 203);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 14;
+            this.textBox2.TabIndex = 4;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(172, 360);
+            this.button1.Location = new System.Drawing.Point(289, 343);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
+            this.button1.TabIndex = 7;
+            this.button1.Text = "AddTransaction";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -216,7 +217,7 @@ namespace AccountingWindows
             this.DebitAccHead.Location = new System.Drawing.Point(48, 158);
             this.DebitAccHead.Name = "DebitAccHead";
             this.DebitAccHead.Size = new System.Drawing.Size(121, 24);
-            this.DebitAccHead.TabIndex = 16;
+            this.DebitAccHead.TabIndex = 0;
             this.DebitAccHead.SelectedIndexChanged += new System.EventHandler(this.DebitAccHead_SelectedIndexChanged);
             // 
             // CreditAccHead
@@ -232,7 +233,7 @@ namespace AccountingWindows
             this.CreditAccHead.Location = new System.Drawing.Point(260, 151);
             this.CreditAccHead.Name = "CreditAccHead";
             this.CreditAccHead.Size = new System.Drawing.Size(121, 24);
-            this.CreditAccHead.TabIndex = 17;
+            this.CreditAccHead.TabIndex = 3;
             this.CreditAccHead.SelectedIndexChanged += new System.EventHandler(this.CreditAccHead_SelectedIndexChanged);
             // 
             // txt_OngoingEntry
@@ -244,11 +245,22 @@ namespace AccountingWindows
             this.txt_OngoingEntry.Text = "";
             this.txt_OngoingEntry.TextChanged += new System.EventHandler(this.txt_OngoingEntry_TextChanged);
             // 
+            // btn_Clear
+            // 
+            this.btn_Clear.Location = new System.Drawing.Point(74, 343);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(75, 23);
+            this.btn_Clear.TabIndex = 19;
+            this.btn_Clear.Text = "Clear";
+            this.btn_Clear.UseVisualStyleBackColor = true;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 496);
+            this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.txt_OngoingEntry);
             this.Controls.Add(this.CreditAccHead);
             this.Controls.Add(this.DebitAccHead);
@@ -295,6 +307,7 @@ namespace AccountingWindows
         private System.Windows.Forms.ComboBox DebitAccHead;
         private System.Windows.Forms.ComboBox CreditAccHead;
         private System.Windows.Forms.RichTextBox txt_OngoingEntry;
+        private System.Windows.Forms.Button btn_Clear;
     }
 }
 
